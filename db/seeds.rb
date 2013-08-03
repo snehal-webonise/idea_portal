@@ -6,5 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# create Admin user
 @user = User.new(:name => "Admin", :email => "prerana@weboniselab.com", :password => "idea123", :password_confirmation => "idea123", :is_admin => true)
 @user.save(:validate => false)
+
+#Create categories
+Category.create!(:name => 'Technical')
+Category.create!(:name => 'Cultural')
+Category.create!(:name => 'General')

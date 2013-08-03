@@ -1,0 +1,68 @@
+<%= form_for @idea  do |f| %>
+    <% if @idea.errors.full_messages.any? %>
+        <% @idea.errors.full_messages.each do |error_message| %>
+            <%= error_message if @user.errors.full_messages.first == error_message %>
+        <% end %>
+    <% end %>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Name %>
+      </div>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Category %>
+      </div>
+      <div class="controls">
+        <%= f.select(:category_id, select_categories, {:prompt => "-- Select a category --".html_safe}) %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Description %>
+      </div>
+      <div class="controls">
+        <%= f.text_area :description, :rows=>5, :columns=>10  %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :How_usefull %>
+      </div>
+      <div class="controls">
+        <%= f.text_area :how_usefull,:rows=>5 %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Private %>
+      </div>
+      <div class="controls">
+        <%= f.radio_button :mode,'private' %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Public %>
+      </div>
+      <div class="controls">
+        <%= f.radio_button :mode,'public' %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div>
+        <%= f.label :Custom %>
+      </div>
+      <div class="controls">
+        <%= f.radio_button :mode,'custom' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <%= f.submit "Post" %>
+      </div>
+    </div>
+<% end %>
