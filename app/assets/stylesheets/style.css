@@ -172,7 +172,8 @@ em {
 #viewComments p.comments{
     background-color: #D5D5D5;
     border-radius: 2px;
-    padding: 20px; 
+    padding: 20px;
+    margin-bottom: 5px;
 }
 .optionWrap {
      float: right;
