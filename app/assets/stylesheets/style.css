@@ -220,3 +220,18 @@ tbody tr{
 thead{
     border-bottom: 3px solid #D5D5D5;
 }
+.navigation-links {
+    width: 420px;
+    float: left;
+    margin-left: 30px;
+}
+.navigation-links a {
+    color: #111111;
+    line-height: 82px;
+    margin: 0 20px;
+    font-size: 18px;
+}
+.optionWrap {
+    float: right;
+}
+
