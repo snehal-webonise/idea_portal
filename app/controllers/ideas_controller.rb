@@ -3,22 +3,10 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
-    #select_field =  params["slected_value"].present? ? params["slected_value"].to_s : nil
-    #logger.info("##################{select_field.inspect}")
-    #@ideas = current_user.ideas.paginate(:page => params[:page], :per_page => 2)
-    #if select_field == "My Ideas"
-    #  @ideas = current_user.ideas
-    #  logger.info("##################{@ideas.inspect}")
-    #
-    #
-    #end
-    #respond_to do |format|
-    #  format.js { render :nothing => true }
-    #end
   end
 
   def new
-     @idea = Idea.new
+    @idea = Idea.new
   end
 
   def create
@@ -27,6 +15,7 @@ class IdeasController < ApplicationController
       flash[:notice] = "Successfully posted your idea"
       redirect_to idea_path(@idea)
     else
+      logger.info "-------------#{@idea.errors.inspect}"
       render :action => "new"
     end
   end
@@ -68,14 +57,29 @@ class IdeasController < ApplicationController
 
   def increase_likes
     if params[:text] == "Like"
-     likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
-     likes.save
+      likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
+      likes.save
     else
       Like.where(:idea_id=>params[:id],:user_id=>current_user.id).delete_all
     end
-     respond_to do |format|
-       format.js{render :nothing=>true}
-     end
+    respond_to do |format|
+      format.js{render :nothing=>true}
+    end
+  end
+
+  def show_ideas
+    if params[:my_ideas].present?
+      @ideas = current_user.ideas.paginate(:page => params[:page], :per_page => 2)
+    else
+      @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
+    end
+
+  end
+
+  def categoriwise_idea
+    category_id = Category.find_by_name(params[:type])
+    @ideas = Idea.where(:category_id => category_id.id ).paginate(:page => params[:page], :per_page => 2)
+    logger.info"##########{@ideas.inspect}"
   end
 
 end

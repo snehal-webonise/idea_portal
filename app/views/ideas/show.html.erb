@@ -28,7 +28,7 @@
   <div class="control-group small">
     <% if @idea.user_id != current_user.id %>
         <% if find_like(current_user.id,@idea.id).present? %>
-            <%= link_to "Unike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+            <%= link_to "Unlike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
         <% else %>
             <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
         <% end %>

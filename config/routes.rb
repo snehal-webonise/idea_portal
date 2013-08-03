@@ -20,6 +20,11 @@ IdeaPortal::Application.routes.draw do
          post :increase_likes
          get :delete_idea
       end
+
+      collection do
+        get :show_ideas
+        get :categoriwise_idea
+      end
     end
 
     namespace :admin do |admin|

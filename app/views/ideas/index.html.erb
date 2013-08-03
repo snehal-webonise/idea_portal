@@ -1,32 +1,15 @@
-<%= content_for :head do %>
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $("#Filter").change(function(){
-                  var select = this.value
-                  $.ajax({
-                  type: "POST",
-                  url: "/ideas/index",
-                  data: {slected_value:select},
-                  dataType:"script"
-                });
-          });
-
-
-
-
-
-
-      });
-  </script>
-<% end %>
-
+<div id="wrapper">
+  <%= render "layouts/header" %>
 
 <% if current_user.present? %>
+      <div class="dashbord">
     <h2>Idea Portal</h2>
     <%= link_to "Post Your Idea", new_idea_path %>
+    <%= link_to "View Ideas", show_ideas_ideas_path %>
+    <%= link_to "My Ideas", show_ideas_ideas_path(:rel=>"my_ideas") %>
 
     <h3><span class="label">IDEAS</span></h3>
-    <span class="ideaSelectBox"><%= select_tag "Filter", options_for_select(["All Ideas", "My Ideas", "Top 5 Ideas" ], "My Ideas"),:class=>"selectFilter" %></span>
+    <!--<span class="ideaSelectBox"><%#= select_tag "Filter", options_for_select(["All Ideas", "My Ideas", "Top 5 Ideas" ], "My Ideas"),:class=>"selectFilter" %></span>-->
     <% @ideas.each do |i| %>
         <div class="ideaList">
           <div>
@@ -43,3 +26,5 @@
       <%= will_paginate @ideas,:class => "customPagination" %>
     </ul>
 <% end %>
+  </div>
+</div>
