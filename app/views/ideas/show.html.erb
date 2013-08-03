@@ -61,16 +61,20 @@
         });
 
         $(".increaseLikes").click(function(){
-            $('this').bind('click', function(e){
-                e.preventDefault();
-            })
-            alert("likes");
             var id = $(this).attr("rel");
+            var text = $(this).text();
+            if(text == "Like"){
+                $(this).text("Unlike");
+            }
+            else{
+                $(this).text("Link");
+            }
+
             alert(id);
             $.ajax({
                type: 'POST',
                url: '/ideas/'+id+'/increase_likes',
-               data:{id:id},
+               data:{id:id,text:text},
                dataType: 'script'
            })
         })

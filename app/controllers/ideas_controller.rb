@@ -38,9 +38,13 @@ class IdeasController < ApplicationController
   end
 
   def increase_likes
-    logger.info"################{current_user.id.inspect}"
+    if params[:text] == "Like"
      likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
      likes.save
+    else
+      Like.where(:idea_id=>params[:id],:user_id=>current_user.id).delete_all
+    end
+
      respond_to do |format|
        format.js{render :nothing=>true}
      end
