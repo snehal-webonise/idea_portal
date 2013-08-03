@@ -31,11 +31,12 @@ class IdeasController < ApplicationController
     end
     @comments = @idea.comments
     respond_to do |format|
-      format.js # myshowdata.html.erb
+      format.js
     end
   end
 
   def increase_likes
+    logger.info"################{current_user.id.inspect}"
      likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
      likes.save
      respond_to do |format|

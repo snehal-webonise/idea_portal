@@ -61,6 +61,9 @@
         });
 
         $(".increaseLikes").click(function(){
+            $('this').bind('click', function(e){
+                e.preventDefault();
+            })
             alert("likes");
             var id = $(this).attr("rel");
             alert(id);
