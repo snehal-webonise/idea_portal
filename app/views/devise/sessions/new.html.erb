@@ -1,17 +1,31 @@
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<div id="wrapper">
+  <header class="navbar-fixed-top mainHeader">
+    <div class="container">
+      <a href="#" class="logo">webonise lab</a>
+    </div>
+  </header>
+  <!--header end here-->
+  <section class="mainBg">
+    <div class="container">
+      <div class="row">
+        <div class="spa6">
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:class => "signInForm") do |f| %>
+            <div class="controls">
+              <%= f.email_field :email, :autofocus => true, :class=>"field",:placeholder=>"Enter email" %>
+            </div>
+            <div class="controls">
+              <%= f.password_field :password,:class=>"field", :placeholder=>"password" %>
+            </div>
+              <%= f.submit "Sign in",:class=>"submitBtn" %>
+              <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <footer class="footer">
+  </footer>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
-
+</div>

@@ -1,32 +1,26 @@
-<div class="showDetails">
+<div id="wrapper">
+  <%= render "layouts/header" %>
+<div class="showDetails form-horizontal">
   <div class="control-group small ">
-    <div>
       <label class="control-label" for="inputEmail">Name :</label>
-    </div>
     <div class="controls ">
       <%= @idea.name %>
     </div>
   </div>
   <div class="control-group ">
-    <div class="pull-left">
       <label class="control-label" for="inputEmail">Category :</label>
-    </div>
     <div class="controls">
       <%= get_category(@idea.category_id)%>
     </div>
   </div>
   <div class="control-group small">
-    <div class="pull-left">
       <label class="control-label" for="inputEmail">Description :</label>
-    </div>
     <div class="controls">
       <%= @idea.description %>
     </div>
   </div>
   <div class="control-group small">
-    <div class="pull-left">
       <label class="control-label" for="inputEmail">How to Usefull :</label>
-    </div>
     <div class="controls">
       <%= @idea.how_usefull %>
     </div>
@@ -46,8 +40,12 @@
 </div>
 
 
-<div id="viewComments"><%= render :partial => "comment" %></div>
-<%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+<div id="viewComments">
+  <%= render :partial => "comment" %>
+  <div class="linkClick">
+    <%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+  </div>
+</div>
 <div id="commentForm" style="display: none">
   <%= form_for @comment,:url=> create_comment_idea_path ,:method => "post",:remote => true  do |f| %>
       <div class="field">
@@ -60,7 +58,7 @@
       </div>
   <% end %>
 </div>
-
+</div>
 <%= content_for :head do  %>
     <script type="text/javascript">
         $(document).ready(function(){

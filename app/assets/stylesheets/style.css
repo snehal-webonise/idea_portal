@@ -1,11 +1,9 @@
-body{
-    padding: 50px 0 0;
-}
-
-
 .showDetails {
     text-align: left;
+    width: 440px;
     line-height: 30px;
+    margin: 120px auto 0;
+
 }
 .showDetails .control-label {
     text-align: left;
@@ -13,12 +11,16 @@ body{
     width: 110px;
 }
 .showDetails .controls {
-    margin-left: 110px;
+    margin-left: 120px;
+}
+.showDetails .inputEmail{
+    font: bold;
 }
 .new_idea {
     width: 300px;
     margin: 0 auto;
     display: block;
+    margin-top: 132px;
 }
 .new_idea .radio {
     float: left;
@@ -40,7 +42,8 @@ textarea {
     resize: none;
 }
 #new_comment{
-    width: 500px;
+    width: 440px;
+    margin: 0 auto;
 }
 /* Start css for list for all ideas */
 .ideaList{
@@ -129,7 +132,34 @@ textarea {
 .customPagination .disabled, .customPagination .current {
     cursor: default;
 }
+.homeBtn {
+     float: left;
+     margin-left: 20px;
+     font-size: 150%;
+     color: #808080;
 
+ }
+.signOutBtn {
+    float: right;
+    margin-left: 10px;
+    font-size: 150%;
+    color: #808080;
+}
 
+ .optionWrap {
+     float: right;
+     line-height: 81px;
+     width: 165px;
+ }
+.optionWrap a:first-child {
+    margin-left: 0;
+}
+.optionWrap span {
+    margin-left: 10px;
+}
+#viewComments {
+    width: 440px;
+    margin: 0 auto;
+}
 
 /* Css for list for all ideas */
