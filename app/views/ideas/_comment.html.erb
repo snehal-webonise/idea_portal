@@ -1,8 +1,6 @@
-<p>
-  <b>Comments:</b>
+<div>
+  <strong>Comments:</strong>
   <% @comments.each do |comment| %>
-      <%#=	 comment.inspect %>
-    <p><%= comment.description %></p>
+    <p class="comments"><%= comment.description %></p>
 <%end %>
-</p>
-
+</div>

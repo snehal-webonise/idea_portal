@@ -1,63 +1,67 @@
 <div id="wrapper">
   <%= render "layouts/header" %>
-<div class="showDetails form-horizontal">
-  <div class="control-group small ">
+  <div class="showDetails form-horizontal">
+    <div class="control-group small ">
       <label class="control-label" for="inputEmail">Name :</label>
-    <div class="controls ">
-      <%= @idea.name %>
+      <div class="controls ">
+        <%= @idea.name %>
+      </div>
     </div>
-  </div>
-  <div class="control-group ">
+    <div class="control-group ">
       <label class="control-label" for="inputEmail">Category :</label>
-    <div class="controls">
-      <%= get_category(@idea.category_id)%>
+      <div class="controls">
+        <%= get_category(@idea.category_id)%>
+      </div>
     </div>
-  </div>
-  <div class="control-group small">
+    <div class="control-group small">
       <label class="control-label" for="inputEmail">Description :</label>
-    <div class="controls">
-      <%= @idea.description %>
+      <div class="controls">
+        <%= @idea.description %>
+      </div>
     </div>
-  </div>
-  <div class="control-group small">
+    <div class="control-group small">
       <label class="control-label" for="inputEmail">How to Usefull :</label>
-    <div class="controls">
-      <%= @idea.how_usefull %>
+      <div class="controls">
+        <%= @idea.how_usefull %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <% if @idea.user_id != current_user.id %>
+          <% if find_like(current_user.id,@idea.id).present? %>
+              <%= link_to "Unlike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+          <% else %>
+              <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+          <% end %>
+      <% else %>
+          <%= link_to "Edit", edit_idea_path,:class=>"btn btn-primary"   %>
+          <%= link_to "Delete", delete_idea_idea_path(@idea),:class=>"btn btn-primary"   %>
+      <% end %>
     </div>
   </div>
-  <div class="control-group small">
-    <% if @idea.user_id != current_user.id %>
-        <% if find_like(current_user.id,@idea.id).present? %>
-            <%= link_to "Unlike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
-        <% else %>
-            <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
-        <% end %>
-        <% else %>
-        <%= link_to "Edit", edit_idea_path,:class=>"btn btn-primary"   %>
-        <%= link_to "Delete", delete_idea_idea_path(@idea),:class=>"btn btn-primary"   %>
+
+
+  <div id="viewComments">
+    <div id="comments">
+    <%= render :partial => "comment" %>
+    </div>
+    <div class="linkClick">
+      <%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+    </div>
+  </div>
+
+
+  <div id="commentForm" style="display: none">
+    <%= form_for @comment,:url=> create_comment_idea_path ,:method => "post",:remote => true  do |f| %>
+        <div class="field">
+          <%= f.label :Post_your_comment_here %><br />
+          <%= f.text_area :description,:rows => 3,:id=>"new_comment" %>  <br/>
+        </div> <br />
+
+        <div class="actions">
+          <%= f.submit :id=>"add_comment" %>
+        </div>
     <% end %>
   </div>
-</div>
-
-
-<div id="viewComments">
-  <%= render :partial => "comment" %>
-  <div class="linkClick">
-    <%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
-  </div>
-</div>
-<div id="commentForm" style="display: none">
-  <%= form_for @comment,:url=> create_comment_idea_path ,:method => "post",:remote => true  do |f| %>
-      <div class="field">
-        <%= f.label :Post_your_comment_here %><br />
-        <%= f.text_area :description,:rows => 3,:id=>"new_comment" %>  <br/>
-      </div> <br />
-
-      <div class="actions">
-        <%= f.submit :id=>"add_comment" %>
-      </div>
-  <% end %>
-</div>
 </div>
 <%= content_for :head do  %>
     <script type="text/javascript">

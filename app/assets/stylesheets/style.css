@@ -168,7 +168,13 @@ em {
     color: #808080;
 }
 
- .optionWrap {
+/* Css for list for all ideas */
+#viewComments p.comments{
+    background-color: #D5D5D5;
+    border-radius: 2px;
+    padding: 20px; 
+}
+.optionWrap {
      float: right;
      line-height: 81px;
      width: 165px;
@@ -193,4 +199,8 @@ em {
 }
 .ideaTab{
     margin-top: 105px;
+}
+
+#wrapper .singn_in_body{
+    margin-top: 50px;
 }

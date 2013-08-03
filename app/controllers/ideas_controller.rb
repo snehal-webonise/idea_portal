@@ -39,6 +39,7 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @like = Like.find_by_idea_id_and_user_id(params[:id],current_user.id)
     @comments = @idea.comments
     @comment = @idea.comments.new
   end
@@ -66,6 +67,7 @@ class IdeasController < ApplicationController
       format.js{render :nothing=>true}
     end
   end
+
 
   def show_ideas
     if params[:my_ideas].present?

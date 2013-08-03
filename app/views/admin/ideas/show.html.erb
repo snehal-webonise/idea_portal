@@ -1,0 +1,52 @@
+<div class="showDetails">
+<div class="control-group small ">
+      <div>
+        <label class="control-label" for="inputEmail">Name :</label>
+      </div>
+      <div class="controls ">
+        <%= @idea.name %>
+      </div>
+    </div>
+    <div class="control-group ">
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">Category :</label>
+      </div>
+      <div class="controls">
+        <%= get_category(@idea.category_id)%>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">Description :</label>
+      </div>
+      <div class="controls">
+        <%= @idea.description %>
+      </div>
+    </div>
+    <div class="control-group small">
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">How to Usefull :</label>
+      </div>
+      <div class="controls">
+        <%= @idea.how_usefull %>
+      </div>
+    </div>
+  <div class="control-group small">
+    Total Likes : <% if @total_likes > 0 %>
+    <b><%= @total_likes %></b> <%= @total_likes > 2 ? "people" : "person" %>  <b>liked</b> this idea.
+    <% else %>
+      No Likes Yet.
+    <% end %>
+  </div>
+</div>
+
+
+<div id="viewComments"><p>
+  <b>Comments: Idea Got (<%= @comments.count > 0 ? @comments.count : "No" %>) Comments</b>
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <p class="comments"><%= comment.description %></p>
+    <% end %>
+  <% end %>
+</p></div>
+

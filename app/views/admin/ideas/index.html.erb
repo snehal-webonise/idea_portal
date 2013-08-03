@@ -1,1 +1,34 @@
-Connect to an Idea
+<table>
+  <thead>
+    <th>Idea Name</th>
+    <th>Created By</th>
+    <th>Employee ID</th>
+    <th>Status</th>
+    <th>Created On</th>
+    <th>Total Likes</th>
+  </thead>
+  <tbody>
+    <% @ideas.each do |idea| %>
+      <tr>
+        <td>
+          <%= link_to idea.name, admin_idea_path(idea) %>
+        </td>
+        <td>
+          <%= idea.user.name %>
+        </td>
+        <td>
+          <%= idea.user.emp_id %>
+        </td>
+        <td>
+          <%= idea.status %>
+        </td>
+        <td>
+          <%= idea.created_at.to_date %>
+        </td>
+        <td>
+          <%= Like.total_likes(idea).count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

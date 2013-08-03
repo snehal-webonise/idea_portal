@@ -18,6 +18,7 @@ IdeaPortal::Application.routes.draw do
       member do
          post :create_comment
          post :increase_likes
+         post :delete_like
          get :delete_idea
       end
 

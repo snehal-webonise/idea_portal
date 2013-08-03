@@ -1,6 +1,5 @@
-<div id="wrapper">
+<div id="wrapper" class="singn_in_body">
   <%= render "layouts/header" %>
-
 <% if current_user.present? %>
       <div class="dashbord">
     <h2>Idea Portal</h2>
@@ -25,6 +24,12 @@
     <ul class="pagination">
       <%= will_paginate @ideas,:class => "customPagination" %>
     </ul>
+<% else %>
+      <section class="mainBg">
+      </section>
+
+      <footer class="footer">
+      </footer>
 <% end %>
   </div>
-</div>
+    </div>
