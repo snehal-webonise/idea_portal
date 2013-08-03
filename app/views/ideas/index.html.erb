@@ -1,21 +1,21 @@
+<% if current_user.present? %>
+    <h2>Idea Portal</h2>
+    <%= link_to "Post Your Idea", new_idea_path %>
 
-<h2>Idea Portal</h2>
-<%= link_to "Post Your Idea", new_idea_path %>
-<%= link_to "View Idea", ideas_path %>
+    <h3><span class="label">IDEAS</span></h3>
+    <% @ideas.each do |i| %>
+        <div class="ideaList">
+          <div>
+            <h3><%= i.name %></h3>
+            <p><%= i.description %></p>
+          </div>
+          <%= link_to "view", idea_path(i.id) , :class => "blue_btn btn-primary btn-large" %>
+          <div class="clear"></div>
+        </div>
+    <% end %>
 
-<h3><span class="label">IDEAS</span></h3>
-<% @ideas.each do |i| %>
-    <div class="ideaList">
-      <div>
-        <h3><%= i.name %></h3>
-        <p><%= i.description %></p>
-      </div>
-      <%= link_to "view", "", :class => "blue_btn btn-primary btn-large" %>
-      <div class="clear"></div>
-    </div>
+
+    <ul class="pagination">
+      <%= will_paginate @ideas,:class => "customPagination" %>
+    </ul>
 <% end %>
-
-<ul class="pagination">
-  <%= will_paginate @ideas,:class => "customPagination" %>
-</ul>
-
