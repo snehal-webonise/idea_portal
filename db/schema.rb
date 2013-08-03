@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803091336) do
+ActiveRecord::Schema.define(:version => 20130803103053) do
 
   create_table "categories", :force => true do |t|
     t.string   "type"
@@ -52,11 +52,15 @@ ActiveRecord::Schema.define(:version => 20130803091336) do
   add_index "ratings", ["idea_id"], :name => "index_ratings_on_idea_id"
 
   create_table "users", :force => true do |t|
+    t.string   "email",               :default => "", :null => false
+    t.string   "encrypted_password",  :default => "", :null => false
     t.string   "name"
-    t.string   "email"
-    t.string   "employee_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "emp_id"
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

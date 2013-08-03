@@ -8,6 +8,8 @@ gem 'rails', '3.2.13'
 #gem 'sqlite3'
 gem 'mysql2'
 gem "twitter-bootstrap-rails"
+gem 'devise'
+
 
 
 # Gems used only for assets and not required
@@ -23,6 +25,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'libv8'
+gem 'execjs'
+gem 'therubyracer'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
