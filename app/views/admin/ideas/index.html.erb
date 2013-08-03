@@ -1,11 +1,14 @@
 <table>
   <thead>
+    <tr>
     <th>Idea Name</th>
     <th>Created By</th>
     <th>Employee ID</th>
     <th>Status</th>
     <th>Created On</th>
     <th>Total Likes</th>
+    <th>Action</th>
+  </tr>
   </thead>
   <tbody>
     <% @ideas.each do |idea| %>
@@ -26,7 +29,10 @@
           <%= idea.created_at.to_date %>
         </td>
         <td>
-          <%= Like.total_likes(idea).count %>
+         <b> <%= Like.total_likes(idea).count %> </b>
+        </td>
+        <td>
+          <%= link_to "Delete" , admin_idea_path(idea), :method => :delete %>
         </td>
       </tr>
     <% end %>

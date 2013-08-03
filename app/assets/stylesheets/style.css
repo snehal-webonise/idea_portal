@@ -178,7 +178,7 @@ em {
 .optionWrap {
      float: right;
      line-height: 81px;
-     width: 165px;
+     width: 245px;
  }
 .optionWrap a:first-child {
     margin-left: 0;
@@ -211,3 +211,45 @@ em {
 .label-success {
     float:right;
 }
+table{
+    margin-top: 50px;
+}
+tbody tr td{
+    text-align: center;
+}
+thead tr th{
+    padding: 10px;
+}
+tbody tr{
+    height: 40px;
+    border-bottom: 1px solid #D5D5D5;
+}
+thead{
+    border-bottom: 3px solid #D5D5D5;
+}
+.navigation-links {
+    width: 500px;
+    float: left;
+    margin-left: 30px;
+}
+.navigation-links a {
+    color:gray;
+    line-height: 20px;
+    margin: 20px 20px 0;
+    font-size: 18px;
+    height: 20px;
+    display: block;
+    float: left;
+    overflow: hidden;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background: #f2f2f2;
+}
+.navigation-links a:hover {
+    background: #f2f2f2;
+    color: #005580;
+}
+.optionWrap {
+    float: right;
+}
+
