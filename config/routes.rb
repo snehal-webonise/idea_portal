@@ -14,7 +14,7 @@ IdeaPortal::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
     
-    resources :ideas
+    resources :ideas do
       member do
          post :create_comment
          post :increase_likes
