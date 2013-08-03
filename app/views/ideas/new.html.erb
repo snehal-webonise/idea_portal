@@ -1,4 +1,4 @@
-<%= form_for @idea  do |f| %>
+<%= form_for @idea, :class=>"centerform"  do |f| %>
     <% if @idea.errors.full_messages.any? %>
         <% @idea.errors.full_messages.each do |error_message| %>
             <%= error_message if @user.errors.full_messages.first == error_message %>
@@ -37,27 +37,27 @@
       </div>
     </div>
     <div class="control-group small">
-      <div>
-        <%= f.label :Private %>
-      </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'private' %>
-      </div>
-    </div>
-    <div class="control-group small">
-      <div>
-        <%= f.label :Public %>
-      </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'public' %>
+           <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          <%= f.label :Private %>
+        </label>
       </div>
     </div>
     <div class="control-group small">
-      <div>
-        <%= f.label :Custom %>
+       <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          <%= f.label :Public %>
+        </label>
       </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'custom' %>
+    </div>
+    <div class="control-group small">
+      <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          <%= f.label :custom %>
+        </label>
       </div>
     </div>
     <div class="row">
