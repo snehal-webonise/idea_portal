@@ -24,7 +24,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">IdeaPortal</a>
+          <%= link_to "IdeaPortal", ideas_path, :class=>"brand" %>
+          <% if current_user %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand sign_links", :style=> "float:right;" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, :class => "brand sign_links", :style=> "float:right;" %>
+          <% end %>
           <!--<div class="container nav-collapse">-->
             <!--<ul class="nav">-->
               <!--<li><%#= link_to "Link1", "/path1"  %></li>-->

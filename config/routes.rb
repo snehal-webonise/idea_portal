@@ -1,5 +1,5 @@
 IdeaPortal::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {sessions: "sessions"}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -14,6 +14,10 @@ IdeaPortal::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
      resources :ideas
+     namespace :admin do |admin|
+      resources :ideas
+      resources :categories
+    end
 
   # Sample resource route with options:
   #   resources :products do
