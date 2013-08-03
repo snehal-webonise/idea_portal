@@ -31,6 +31,23 @@ class IdeasController < ApplicationController
     end
   end
 
+  def edit
+    @idea = Idea.find(params[:id])
+  end
+
+  def update
+    @idea = Idea.find(params[:id])
+    @idea.update_attributes(params[:idea])
+    flash[:notice] = "Your Idea edited successfully"
+    redirect_to idea_path(@idea)
+  end
+
+  def delete_idea
+    Idea.find(params[:id]).delete
+    flash[:notice] = "Your Idea deleted successfully"
+    redirect_to ideas_path
+  end
+
   def show
     @idea = Idea.find(params[:id])
     @comments = @idea.comments
@@ -56,7 +73,6 @@ class IdeasController < ApplicationController
     else
       Like.where(:idea_id=>params[:id],:user_id=>current_user.id).delete_all
     end
-
      respond_to do |format|
        format.js{render :nothing=>true}
      end

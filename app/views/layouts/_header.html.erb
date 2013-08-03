@@ -1,0 +1,12 @@
+<header class="navbar-fixed-top mainHeader">
+  <div class="container">
+    <a href="#" class="logo">webonise lab</a>
+    <div class="optionWrap clearfix">
+      <% if current_user %>
+          <%= link_to "Home", ideas_path, :class => "brand sign_links homeBtn" %> <span>|</span> <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand sign_links signOutBtn", :style=> "float:right;" %>
+      <% else %>
+          <%= link_to "Sign in", new_user_session_path, :class => "brand sign_links", :style=> "float:right;" %>
+      <% end %>
+    </div>
+  </div>
+</header>

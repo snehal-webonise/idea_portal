@@ -1,56 +1,46 @@
-<div id="wrapper">
-  <%= render "layouts/header" %>
-  <!--header end here-->
 <%= form_for @idea, :class=>"centerform"  do |f| %>
-   <div class="control-group small">
+    <% if @idea.errors.full_messages.any? %>
+        <% @idea.errors.full_messages.each do |error_message| %>
+            <%= error_message if @user.errors.full_messages.first == error_message %>
+        <% end %>
+    <% end %>
+    <div class="control-group small">
       <div>
-        <%= f.label(:Name,"Name <em>*</em>".html_safe) %>
+        <%= f.label :Name %>
       </div>
       <div class="controls">
         <%= f.text_field :name %>
-        <% unless @idea.errors[:name].blank? %>
-            &nbsp; <div class="error_msg "><%= @idea.errors[:name].first  %></div>
-        <% end %>
-        <div class="clear"></div>
       </div>
     </div>
     <div class="control-group small">
       <div>
-        <%= f.label(:Category,"Category <em>*</em>".html_safe) %>
+        <%= f.label :Category %>
       </div>
       <div class="controls">
         <%= f.select(:category_id, select_categories, {:prompt => "-- Select a category --".html_safe}) %>
-        <% unless @idea.errors[:category_id].blank? %>
-            &nbsp; <div class="error_msg "><%= @idea.errors[:category_id].first  %></div>
-        <% end %>
       </div>
     </div>
     <div class="control-group small">
       <div>
-        <%= f.label(:Description,"Description <em>*</em>".html_safe) %>
+        <%= f.label :Description %>
       </div>
       <div class="controls">
         <%= f.text_area :description, :rows=>5, :columns=>10  %>
-        <% unless @idea.errors[:description].blank? %>
-            &nbsp; <div class="error_msg "><%= @idea.errors[:description].first  %></div>
-        <% end %>
       </div>
     </div>
     <div class="control-group small">
       <div>
-        <%= f.label(:How_usefull,"How it usefull <em>*</em>".html_safe) %>
+        <%= f.label :How_usefull %>
       </div>
       <div class="controls">
         <%= f.text_area :how_usefull,:rows=>5 %>
-        <% unless @idea.errors[:how_usefull].blank? %>
-            &nbsp; <div class="error_msg "><%= @idea.errors[:how_usefull].first  %></div>
-        <% end %>
       </div>
     </div>
     <div class="control-group small">
       <div class="radio">
         <label>
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          <%= f.radio_button :mode,'private' %>
+          <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">-->
           <%= f.label :Private %>
         </label>
       </div>
@@ -58,7 +48,8 @@
     <div class="control-group small">
       <div class="radio">
         <label>
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          <%= f.radio_button :mode,'public' %>
+          <!--<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">-->
           <%= f.label :Public %>
         </label>
       </div>
@@ -66,6 +57,7 @@
     <div class="control-group small">
       <div class="radio">
         <label>
+          <%= f.radio_button :mode,'custom' %>
           <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
           <%= f.label :custom %>
         </label>
@@ -73,8 +65,7 @@
     </div>
     <div class="row">
       <div class="span6">
-        <%= f.submit "Post your Idea",:class=>"btn btn-primary" %>
+        <%= f.submit "Edit your Idea",:class=>"btn btn-primary" %>
       </div>
     </div>
 <% end %>
-</div>

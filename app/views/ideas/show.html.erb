@@ -1,44 +1,51 @@
-<div class="showDetails">
-<div class="control-group small ">
-      <div>
-        <label class="control-label" for="inputEmail">Name :</label>
-      </div>
-      <div class="controls ">
-        <%= @idea.name %>
-      </div>
+<div id="wrapper">
+  <%= render "layouts/header" %>
+<div class="showDetails form-horizontal">
+  <div class="control-group small ">
+      <label class="control-label" for="inputEmail">Name :</label>
+    <div class="controls ">
+      <%= @idea.name %>
     </div>
-    <div class="control-group ">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">Category :</label>
-      </div>
-      <div class="controls">
-        <%= get_category(@idea.category_id)%>
-      </div>
+  </div>
+  <div class="control-group ">
+      <label class="control-label" for="inputEmail">Category :</label>
+    <div class="controls">
+      <%= get_category(@idea.category_id)%>
     </div>
-    <div class="control-group small">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">Description :</label>
-      </div>
-      <div class="controls">
-        <%= @idea.description %>
-      </div>
-    </div>
-    <div class="control-group small">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">How to Usefull :</label>
-      </div>
-      <div class="controls">
-        <%= @idea.how_usefull %>
-      </div>
-    </div>
+  </div>
   <div class="control-group small">
-    <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+      <label class="control-label" for="inputEmail">Description :</label>
+    <div class="controls">
+      <%= @idea.description %>
+    </div>
+  </div>
+  <div class="control-group small">
+      <label class="control-label" for="inputEmail">How to Usefull :</label>
+    <div class="controls">
+      <%= @idea.how_usefull %>
+    </div>
+  </div>
+  <div class="control-group small">
+    <% if @idea.user_id != current_user.id %>
+        <% if find_like(current_user.id,@idea.id).present? %>
+            <%= link_to "Unike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+        <% else %>
+            <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+        <% end %>
+        <% else %>
+        <%= link_to "Edit", edit_idea_path,:class=>"btn btn-primary"   %>
+        <%= link_to "Delete", delete_idea_idea_path(@idea),:class=>"btn btn-primary"   %>
+    <% end %>
   </div>
 </div>
 
 
-<div id="viewComments"><%= render :partial => "comment" %></div>
-<%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+<div id="viewComments">
+  <%= render :partial => "comment" %>
+  <div class="linkClick">
+    <%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+  </div>
+</div>
 <div id="commentForm" style="display: none">
   <%= form_for @comment,:url=> create_comment_idea_path ,:method => "post",:remote => true  do |f| %>
       <div class="field">
@@ -51,8 +58,8 @@
       </div>
   <% end %>
 </div>
-
- <%= content_for :head do  %>
+</div>
+<%= content_for :head do  %>
     <script type="text/javascript">
         $(document).ready(function(){
             $(".showComments").click(function(){
@@ -67,16 +74,15 @@
                 $(this).text("Unlike");
             }
             else{
-                $(this).text("Link");
+                $(this).text("Like");
             }
 
-            alert(id);
             $.ajax({
-               type: 'POST',
-               url: '/ideas/'+id+'/increase_likes',
-               data:{id:id,text:text},
-               dataType: 'script'
-           })
+                type: 'POST',
+                url: '/ideas/'+id+'/increase_likes',
+                data:{id:id,text:text},
+                dataType: 'script'
+            })
         })
     </script>
 <%end%>
