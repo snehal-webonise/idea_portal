@@ -9,7 +9,9 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem "twitter-bootstrap-rails"
 
-
+gem 'libv8'
+gem 'execjs'
+gem 'therubyracer'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
