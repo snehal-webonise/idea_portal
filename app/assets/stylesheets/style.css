@@ -119,6 +119,30 @@ textarea {
     cursor: default;
 }
 
-
-
 /* Css for list for all ideas */
+
+/* css for post idea */
+.error_msg{
+    margin-bottom: 10px;
+    color:#ff0000;
+    float:left;
+    font-size: 12px;
+    font-family: 'ubunturegular', sans-serif;
+}
+.clear {
+    display: block;
+    height: 0.1px;
+    clear: both;
+}
+em {
+    color: red;
+    font-style: normal;
+}
+em {
+    font-style: italic;
+}
+
+.ideaSelectBox{
+    float:right;
+    margin-top: -43px;
+}

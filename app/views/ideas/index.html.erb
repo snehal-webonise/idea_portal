@@ -1,8 +1,32 @@
+<%= content_for :head do %>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $("#Filter").change(function(){
+                  var select = this.value
+                  $.ajax({
+                  type: "POST",
+                  url: "/ideas/index",
+                  data: {slected_value:select},
+                  dataType:"script"
+                });
+          });
+
+
+
+
+
+
+      });
+  </script>
+<% end %>
+
+
 <% if current_user.present? %>
     <h2>Idea Portal</h2>
     <%= link_to "Post Your Idea", new_idea_path %>
 
     <h3><span class="label">IDEAS</span></h3>
+    <span class="ideaSelectBox"><%= select_tag "Filter", options_for_select(["All Ideas", "My Ideas", "Top 5 Ideas" ], "My Ideas"),:class=>"selectFilter" %></span>
     <% @ideas.each do |i| %>
         <div class="ideaList">
           <div>

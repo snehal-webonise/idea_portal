@@ -2,15 +2,27 @@ class IdeasController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
 
   def index
-    logger.info("###############{Idea.find(:all).inspect}##########")
     @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
+    select_field =  params["slected_value"].present? ? params["slected_value"].to_s : nil
+    logger.info("##################{select_field.inspect}")
+    @ideas = current_user.ideas.paginate(:page => params[:page], :per_page => 2)
+    #if select_field == "My Ideas"
+    #  @ideas = current_user.ideas
+    #  logger.info("##################{@ideas.inspect}")
+    #
+    #
+    #end
+    #respond_to do |format|
+    #  format.js { render :nothing => true }
+    #end
   end
+
   def new
      @idea = Idea.new
   end
 
   def create
-    @idea = Idea.new(params[:idea])
+    @idea = current_user.ideas.new(params[:idea])
     if @idea.save
       flash[:notice] = "Successfully posted your idea"
       redirect_to idea_path(@idea)
