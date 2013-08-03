@@ -1,59 +1,75 @@
-<%= form_for @idea  do |f| %>
-    <div class="control-group small">
+<div class="showDetails">
+<div class="control-group small ">
       <div>
-        <%= f.label :Name %>
+        <label class="control-label" for="inputEmail">Name :</label>
+      </div>
+      <div class="controls ">
+        <%= @idea.name %>
+      </div>
+    </div>
+    <div class="control-group ">
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">Category :</label>
       </div>
       <div class="controls">
-        <%= f.text_field :name %>
+        <%= get_category(@idea.category_id)%>
       </div>
     </div>
     <div class="control-group small">
-      <div>
-        <%= f.label :Category %>
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">Description :</label>
       </div>
       <div class="controls">
-        <%= f.select(:category_id, select_categories, {:prompt => "-- Select a category --".html_safe,:disable => true })%>
+        <%= @idea.description %>
       </div>
     </div>
     <div class="control-group small">
-      <div>
-        <%= f.label :Description %>
+      <div class="pull-left">
+        <label class="control-label" for="inputEmail">How to Usefull :</label>
       </div>
       <div class="controls">
-        <%= f.text_area :description, :rows=>5, :columns=>10  %>
+        <%= @idea.how_usefull %>
       </div>
     </div>
-    <div class="control-group small">
-      <div>
-        <%= f.label :How_usefull %>
-      </div>
-      <div class="controls">
-        <%= f.text_area :how_usefull,:rows=>5 %>
-      </div>
-    </div>
-    <div class="control-group small">
-      <div>
-        <%= f.label :Private %>
-      </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'private' %>
-      </div>
-    </div>
-    <div class="control-group small">
-      <div>
-        <%= f.label :Public %>
-      </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'public' %>
-      </div>
-    </div>
-    <div class="control-group small">
-      <div>
-        <%= f.label :Custom %>
-      </div>
-      <div class="controls">
-        <%= f.radio_button :mode,'custom' %>
-      </div>
-    </div>
+  <div class="control-group small">
+    <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+  </div>
+</div>
 
-<% end %>
+
+<div id="viewComments"><%= render :partial => "comment" %></div>
+<%= link_to "Add comments", "javascript:void(0)",:class =>"showComments"%>
+<div id="commentForm" style="display: none">
+  <%= form_for @comment,:url=> create_comment_idea_path ,:method => "post",:remote => true  do |f| %>
+      <div class="field">
+        <%= f.label :Post_your_comment_here %><br />
+        <%= f.text_area :description,:rows => 3,:id=>"new_comment" %>  <br/>
+      </div> <br />
+
+      <div class="actions">
+        <%= f.submit :id=>"add_comment" %>
+      </div>
+  <% end %>
+</div>
+
+ <%= content_for :head do  %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".showComments").click(function(){
+                $("#commentForm").show();
+            });
+        });
+
+        $(".increaseLikes").click(function(){
+            alert("likes");
+            var id = $(this).attr("rel");
+            alert(id);
+            $.ajax({
+               type: 'POST',
+               url: '/ideas/'+id+'/increase_likes',
+               data:{id:id},
+               dataType: 'script'
+           })
+        })
+    </script>
+<%end%>

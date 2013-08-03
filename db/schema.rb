@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130803103053) do
+ActiveRecord::Schema.define(:version => 20130803145430) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -43,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20130803103053) do
 
   add_index "ideas", ["category_id"], :name => "index_ideas_on_category_id"
   add_index "ideas", ["user_id"], :name => "index_ideas_on_user_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "idea_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "likes", ["idea_id"], :name => "index_likes_on_idea_id"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "ratings", :force => true do |t|
     t.integer  "count"

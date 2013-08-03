@@ -1,3 +1,32 @@
 body{
     padding: 50px 0 0;
 }
+
+.showDetails {
+    text-align: left;
+    line-height: 30px;
+}
+.showDetails .control-label {
+    text-align: left;
+    font-weight: bold;
+    width: 110px;
+}
+.showDetails .controls {
+    margin-left: 110px;
+}
+.new_idea {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+.new_idea .radio {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+textarea {
+    resize: none;
+}
+#new_comment{
+    width: 500px;
+}

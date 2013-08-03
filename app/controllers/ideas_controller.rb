@@ -18,6 +18,28 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @comments = @idea.comments
+    @comment = @idea.comments.new
+  end
+
+  def create_comment
+    @idea = Idea.find(params[:id])
+    @new_comment = @idea.comments.new(params[:comment])
+    if @new_comment.save
+      flash[:notice] = "Posted comment successfully."
+    end
+    @comments = @idea.comments
+    respond_to do |format|
+      format.js # myshowdata.html.erb
+    end
+  end
+
+  def increase_likes
+     likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
+     likes.save
+     respond_to do |format|
+       format.js{render :nothing=>true}
+     end
   end
 
 end
