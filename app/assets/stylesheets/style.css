@@ -25,6 +25,17 @@ body{
     margin-right: 20px;
     margin-bottom: 20px;
 }
+
+.edit_idea {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+.edit_idea .radio {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
 textarea {
     resize: none;
 }

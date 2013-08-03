@@ -2,7 +2,6 @@ class IdeasController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
 
   def index
-    logger.info("###############{Idea.find(:all).inspect}##########")
     @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
   end
   def new
@@ -10,13 +9,30 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new(params[:idea])
+    @idea = current_user.ideas.new(params[:idea])
     if @idea.save
       flash[:notice] = "Successfully posted your idea"
       redirect_to idea_path(@idea)
     else
       render :action => "new"
     end
+  end
+
+  def edit
+    @idea = Idea.find(params[:id])
+  end
+
+  def update
+    @idea = Idea.find(params[:id])
+    @idea.update_attributes(params[:idea])
+    flash[:notice] = "Your Idea edited successfully"
+    redirect_to idea_path(@idea)
+  end
+
+  def delete_idea
+    Idea.find(params[:id]).delete
+    flash[:notice] = "Your Idea deleted successfully"
+    redirect_to ideas_path
   end
 
   def show
@@ -44,7 +60,6 @@ class IdeasController < ApplicationController
     else
       Like.where(:idea_id=>params[:id],:user_id=>current_user.id).delete_all
     end
-
      respond_to do |format|
        format.js{render :nothing=>true}
      end
