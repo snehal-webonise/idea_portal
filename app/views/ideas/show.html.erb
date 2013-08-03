@@ -1,3 +1,45 @@
+ <%= content_for :head do  %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".showComments").click(function(){
+                $("#commentForm").show();
+            });
+
+        // after like increase the like in db
+        $(".increaseLikes").click(function(){
+            var id = $(this).attr("rel");
+            var text = $(this).text();
+            $.ajax({
+               type: 'POST',
+               url: '/ideas/'+id+'/increase_likes',
+               data:{id:id,text:text},
+               dataType: 'script'
+            }).done(function() {
+              $(".likeLinks .increaseLikes").remove();
+              $(".likeLinks").append('<a rel="'+ id +'" id="decreaseLike" class="btn btn-primary decreaseLike" href="javascript:void(0)">Unlike</a>');
+              // alert("You have liked this Idea");
+            });
+        })
+
+        // after unlike delete the like from db
+        $(".decreaseLike").click(function(){
+            var id = $(this).attr("rel");
+            var text = $(this).text();
+            $.ajax({
+               type: 'POST',
+               url: '/ideas/'+id+'/delete_like',
+               data:{id:id,text:text},
+               dataType: 'script'
+            }).done(function() {
+              $(".likeLinks .decreaseLike").remove();
+              $(".likeLinks").append('<a rel="'+ id +'" id="increaseLikes" class="btn btn-primary increaseLikes" href="javascript:void(0)">Like</a>');
+              // alert("You have Unliked this Idea");
+            });
+        })
+
+      });
+    </script>
+<%end%>
 <div id="wrapper">
   <%= render "layouts/header" %>
 <div class="showDetails form-horizontal">
@@ -25,14 +67,14 @@
       <%= @idea.how_usefull %>
     </div>
   </div>
-  <div class="control-group small">
+  <div class="control-group small likeLinks">
     <% if @idea.user_id != current_user.id %>
         <% if find_like(current_user.id,@idea.id).present? %>
-            <%= link_to "Unike", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
+            <%= link_to "Unike", "javascript:void(0)",:class=>"btn btn-primary decreaseLike",:rel =>@idea.id   %>
         <% else %>
             <%= link_to "Like", "javascript:void(0)",:class=>"btn btn-primary increaseLikes",:rel =>@idea.id   %>
         <% end %>
-        <% else %>
+    <% else %>
         <%= link_to "Edit", edit_idea_path,:class=>"btn btn-primary"   %>
         <%= link_to "Delete", delete_idea_idea_path(@idea),:class=>"btn btn-primary"   %>
     <% end %>
@@ -58,31 +100,5 @@
       </div>
   <% end %>
 </div>
+
 </div>
-<%= content_for :head do  %>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".showComments").click(function(){
-                $("#commentForm").show();
-            });
-        });
-
-        $(".increaseLikes").click(function(){
-            var id = $(this).attr("rel");
-            var text = $(this).text();
-            if(text == "Like"){
-                $(this).text("Unlike");
-            }
-            else{
-                $(this).text("Like");
-            }
-
-            $.ajax({
-                type: 'POST',
-                url: '/ideas/'+id+'/increase_likes',
-                data:{id:id,text:text},
-                dataType: 'script'
-            })
-        })
-    </script>
-<%end%>

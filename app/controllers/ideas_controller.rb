@@ -50,6 +50,7 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @like = Like.find_by_idea_id_and_user_id(params[:id],current_user.id)
     @comments = @idea.comments
     @comment = @idea.comments.new
   end
@@ -67,15 +68,26 @@ class IdeasController < ApplicationController
   end
 
   def increase_likes
-    if params[:text] == "Like"
+    @like = Like.find_by_idea_id_and_user_id(params[:id], current_user.id)
+    if params[:text] == "Like" && @like.blank?
      likes = Like.new(:idea_id => params[:id],:user_id => current_user.id)
      likes.save
-    else
-      Like.where(:idea_id=>params[:id],:user_id=>current_user.id).delete_all
     end
-     respond_to do |format|
-       format.js{render :nothing=>true}
-     end
+    respond_to do |format|
+      format.js{render :nothing=>true}
+    end
+  end
+
+  def delete_like
+    @like = Like.find_by_idea_id_and_user_id(params[:id],current_user.id)
+    if params[:text] == "Unlike" && @like.present?
+     @like.destroy
+    end
+
+    respond_to do |format|
+      format.js{render :nothing=>true}
+    end
+
   end
 
 end
