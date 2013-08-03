@@ -2,7 +2,6 @@ class IdeasController < ApplicationController
   def index
 
   end
-
   def new
      @idea = Idea.new
   end
@@ -20,4 +19,5 @@ class IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
   end
+
 end
