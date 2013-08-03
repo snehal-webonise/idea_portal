@@ -1,0 +1,24 @@
+<div id="wrapper">
+  <%= render "layouts/header" %>
+  <div class="ideaTab">
+    <%= link_to "Cultural Ideas",categoriwise_idea_ideas_path(:type=>"Cultural"),:class=>"btn btn-primary"%>
+    <%= link_to "Technical Ideas",categoriwise_idea_ideas_path(:type=>"Technical"),:class=>"btn btn-primary"%>
+    <%= link_to "General Ideas",categoriwise_idea_ideas_path(:type=>"General"),:class=>"btn btn-primary"%>
+  </div>
+  <div id="displayIdea">
+    <% if !@ideas.nil? %>
+    <% @ideas.each do |i| %>
+        <div class="ideaList">
+          <div>
+            <h3><%= i.name %></h3>
+            <p><%= i.description %></p>
+          </div>
+          <%= link_to "view", idea_path(i.id) , :class => "blue_btn btn-primary btn-large" %>
+          <div class="clear"></div>
+        </div>
+    <% end %>
+        <% else %>
+    <h2>No ideas present</h2>
+    <% end %>
+  </div>
+</div>
