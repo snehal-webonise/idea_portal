@@ -1,0 +1,9 @@
+ActionMailer::Base.smtp_settings = {  
+  :address              => "smtp.gmail.com",  
+  :port                 => 587,  
+  :domain               => "ideaPortal.com",  
+  :user_name            => "idea_portal",  
+  :password             => "idea",  
+  :authentication       => "plain",  
+  :enable_starttls_auto => true  
+}

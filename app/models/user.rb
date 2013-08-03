@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   has_many :ideas
+
   has_many :likes
-  attr_accessible :email, :employee_id, :name, :password, :password_confirmation, :remember_me
+
+  attr_accessible :email, :emp_id, :name, :password, :password_confirmation, :remember_me, :is_admin
 end
