@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  status: MyString
+  mode: MyString
+  user: 
+  category: 
+
+two:
+  name: MyString
+  description: MyString
+  status: MyString
+  mode: MyString
+  user: 
+  category: 
