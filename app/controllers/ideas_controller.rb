@@ -3,9 +3,9 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
-    select_field =  params["slected_value"].present? ? params["slected_value"].to_s : nil
-    logger.info("##################{select_field.inspect}")
-    @ideas = current_user.ideas.paginate(:page => params[:page], :per_page => 2)
+    #select_field =  params["slected_value"].present? ? params["slected_value"].to_s : nil
+    #logger.info("##################{select_field.inspect}")
+    #@ideas = current_user.ideas.paginate(:page => params[:page], :per_page => 2)
     #if select_field == "My Ideas"
     #  @ideas = current_user.ideas
     #  logger.info("##################{@ideas.inspect}")
