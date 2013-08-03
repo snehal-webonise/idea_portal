@@ -11,4 +11,10 @@ class Admin::IdeasController < ApplicationController
 		@total_likes = Like.total_likes(@idea).count
 	end
 
+	def destroy
+		@idea = Idea.find(params[:id])
+		@idea.destroy
+		redirect_to admin_ideas_path
+	end
+
 end

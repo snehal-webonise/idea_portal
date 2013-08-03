@@ -29,6 +29,7 @@
             <span class="brand">Administrator</span>
           <% end %>
           <% if current_user %>
+            <%= link_to "Home", ideas_path, :class => "brand sign_links homeBtn" %>
             <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand sign_links", :style=> "float:right;" %>
           <% else %>
             <%= link_to "Sign in", new_user_session_path, :class => "brand sign_links", :style=> "float:right;" %>

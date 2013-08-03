@@ -1,52 +1,50 @@
-<div class="showDetails">
-<div class="control-group small ">
-      <div>
-        <label class="control-label" for="inputEmail">Name :</label>
-      </div>
+<div id="wrapper">
+  <%= render "layouts/header" %>
+  <div class="showDetails form-horizontal">
+    <div class="control-group small ">
+      <label class="control-label" for="inputEmail">Name :</label>
       <div class="controls ">
         <%= @idea.name %>
       </div>
     </div>
     <div class="control-group ">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">Category :</label>
-      </div>
+      <label class="control-label" for="inputEmail">Category :</label>
       <div class="controls">
         <%= get_category(@idea.category_id)%>
       </div>
     </div>
     <div class="control-group small">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">Description :</label>
-      </div>
+      <label class="control-label" for="inputEmail">Description :</label>
       <div class="controls">
         <%= @idea.description %>
       </div>
     </div>
     <div class="control-group small">
-      <div class="pull-left">
-        <label class="control-label" for="inputEmail">How to Usefull :</label>
-      </div>
+      <label class="control-label" for="inputEmail">How to Usefull :</label>
       <div class="controls">
         <%= @idea.how_usefull %>
       </div>
     </div>
-  <div class="control-group small">
-    Total Likes : <% if @total_likes > 0 %>
-    <b><%= @total_likes %></b> <%= @total_likes > 2 ? "people" : "person" %>  <b>liked</b> this idea.
-    <% else %>
-      No Likes Yet.
-    <% end %>
+    <div class="control-group small">
+      <label class="control-label" for="inputEmail">Likes :</label> This idea got <%= @total_likes %> likes
+    </div>
   </div>
+
+
+  <div id="viewComments">
+    <div id="comments">
+    <div>
+      <strong>Comments:</strong>
+      <% if @comments.present?  %>
+      <% @comments.each do |comment| %>
+        <p class="comments"><%= comment.description %></p>
+      <%end %>
+      <% else %>
+      No comments Yet
+      <% end %>
+    </div>
+
+    </div>
+  </div>
+
 </div>
-
-
-<div id="viewComments"><p>
-  <b>Comments: Idea Got (<%= @comments.count > 0 ? @comments.count : "No" %>) Comments</b>
-  <% if @comments.present? %>
-    <% @comments.each do |comment| %>
-      <p class="comments"><%= comment.description %></p>
-    <% end %>
-  <% end %>
-</p></div>
-

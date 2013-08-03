@@ -3,7 +3,11 @@
     <a href="#" class="logo">idea portal</a>
     <div class="optionWrap clearfix">
       <% if current_user %>
-          <%= link_to "Home", ideas_path, :class => "brand sign_links homeBtn" %> <span>|</span> <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand sign_links signOutBtn", :style=> "float:right;" %>
+        <% if current_user.is_admin? %>
+          <%= link_to "Admin", admin_ideas_path, :class => "brand sign_links homeBtn" %> 
+        <% end %>
+          <%= link_to "Home", ideas_path, :class => "brand sign_links homeBtn" %>
+           <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "brand sign_links signOutBtn", :style=> "float:right;" %>
       <% else %>
           <%= link_to "Sign in", new_user_session_path, :class => "brand sign_links", :style=> "float:right;" %>
       <% end %>
