@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
   def index
-
+    logger.info("###############{Idea.find(:all).inspect}##########")
+    @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
   end
   def new
      @idea = Idea.new
