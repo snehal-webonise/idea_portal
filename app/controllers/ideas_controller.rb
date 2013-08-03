@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create]
+
   def index
     logger.info("###############{Idea.find(:all).inspect}##########")
     @ideas = Idea.paginate(:page => params[:page], :per_page => 2)
