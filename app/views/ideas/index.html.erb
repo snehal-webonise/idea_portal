@@ -12,7 +12,11 @@
     <% @ideas.each do |i| %>
         <div class="ideaList">
           <div>
-            <h3><%= i.name %></h3>
+            <div class="ideaName">
+                <h3 style="float: left;"><%= i.name %></h3>
+                <span class="label label-success">Likes :<%= Like.total_likes(i).count %></span>
+            </div>
+            <div style="clear:both;"></div>
             <p><%= i.description %></p>
           </div>
           <%= link_to "view", idea_path(i.id) , :class => "blue_btn btn-primary btn-large" %>

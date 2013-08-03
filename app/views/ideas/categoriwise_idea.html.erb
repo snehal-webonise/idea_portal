@@ -20,5 +20,8 @@
         <% else %>
     <h2>No ideas present</h2>
     <% end %>
+    <ul class="pagination">
+      <%= will_paginate @ideas,:class => "customPagination" %>
+    </ul>
   </div>
 </div>

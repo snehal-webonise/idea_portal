@@ -205,3 +205,9 @@ em {
 #wrapper .singn_in_body{
     margin-top: 50px;
 }
+#displayIdea{
+    padding-top: 20px;
+}
+.label-success {
+    float:right;
+}

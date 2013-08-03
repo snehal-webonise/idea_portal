@@ -1,10 +1,12 @@
 <div id="wrapper">
-<%= render "layouts/header" %>
-  <div class="ideaTab">
-  <%= link_to "Cultural Ideas",categoriwise_idea_ideas_path(:type=>"Cultural"),:class=>"btn btn-primary"%>
-  <%= link_to "Technical Ideas",categoriwise_idea_ideas_path(:type=>"Technical"),:class=>"btn btn-primary"%>
-  <%= link_to "General Ideas",categoriwise_idea_ideas_path(:type=>"General"),:class=>"btn btn-primary"%>
-  </div>
+  <%= render "layouts/header" %>
+  <% if !params[:rel].present? %>
+    <div class="ideaTab">
+        <%= link_to "Cultural Ideas",categoriwise_idea_ideas_path(:type=>"Cultural"),:class=>"btn btn-primary"%>
+        <%= link_to "Technical Ideas",categoriwise_idea_ideas_path(:type=>"Technical"),:class=>"btn btn-primary"%>
+        <%= link_to "General Ideas",categoriwise_idea_ideas_path(:type=>"General"),:class=>"btn btn-primary"%>
+    </div>
+  <% end %>
   <div id="displayIdea">
     <% @ideas.each do |i| %>
         <div class="ideaList">
@@ -16,5 +18,8 @@
           <div class="clear"></div>
         </div>
     <% end %>
+    <ul class="pagination">
+      <%= will_paginate @ideas,:class => "customPagination" %>
+    </ul>
   </div>
-    </div>
+</div>
