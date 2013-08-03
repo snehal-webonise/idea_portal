@@ -1,5 +1,5 @@
 IdeaPortal::Application.routes.draw do
-  devise_for :users, controllers: {sessions: "sessions"}
+  devise_for :users, :controllers => {:sessions => "sessions"}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -19,6 +19,7 @@ IdeaPortal::Application.routes.draw do
          post :create_comment
          post :increase_likes
          post :delete_like
+         get :delete_idea
       end
     end
 

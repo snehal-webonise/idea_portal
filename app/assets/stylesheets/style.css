@@ -1,11 +1,9 @@
-body{
-    padding: 50px 0 0;
-}
-
-
 .showDetails {
     text-align: left;
+    width: 440px;
     line-height: 30px;
+    margin: 120px auto 0;
+
 }
 .showDetails .control-label {
     text-align: left;
@@ -13,14 +11,29 @@ body{
     width: 110px;
 }
 .showDetails .controls {
-    margin-left: 110px;
+    margin-left: 120px;
+}
+.showDetails .inputEmail{
+    font: bold;
 }
 .new_idea {
     width: 300px;
     margin: 0 auto;
     display: block;
+    margin-top: 132px;
 }
 .new_idea .radio {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.edit_idea {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+.edit_idea .radio {
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -29,7 +42,8 @@ textarea {
     resize: none;
 }
 #new_comment{
-    width: 500px;
+    width: 440px;
+    margin: 0 auto;
 }
 /* Start css for list for all ideas */
 .ideaList{
@@ -118,12 +132,65 @@ textarea {
 .customPagination .disabled, .customPagination .current {
     cursor: default;
 }
+.homeBtn {
+     float: left;
+     margin-left: 20px;
+     font-size: 150%;
+     color: #808080;
+}
 
+/* Css for list for all ideas */
 
+/* css for post idea */
+.error_msg{
+    margin-bottom: 10px;
+    color:#ff0000;
+    float:left;
+    font-size: 12px;
+    font-family: 'ubunturegular', sans-serif;
+}
+.clear {
+    display: block;
+    height: 0.1px;
+    clear: both;
+}
+em {
+    color: red;
+    font-style: normal;
+}
+em {
+    font-style: italic;
+ }
+.signOutBtn {
+    float: right;
+    margin-left: 10px;
+    font-size: 150%;
+    color: #808080;
+}
 
 /* Css for list for all ideas */
 #viewComments p.comments{
     background-color: #D5D5D5;
     border-radius: 2px;
     padding: 20px; 
+}
+.optionWrap {
+     float: right;
+     line-height: 81px;
+     width: 165px;
+ }
+.optionWrap a:first-child {
+    margin-left: 0;
+}
+.optionWrap span {
+    margin-left: 10px;
+}
+#viewComments {
+    width: 440px;
+    margin: 0 auto;
+}
+
+.ideaSelectBox{
+    float:right;
+    margin-top: -43px;
 }
