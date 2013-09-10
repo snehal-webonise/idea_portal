@@ -1,4 +1,4 @@
 idea_portal
 ===========
 
-idea_portal is our gee hour project
+idea_portal is our geek hour project
